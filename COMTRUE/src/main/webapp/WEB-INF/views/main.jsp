@@ -78,6 +78,7 @@
 				</thead>
 				<tbody>
 					<c:forEach var="employees" items="${employeesList}">
+						<input id="hidden-id" type="hidden" value="${employees.id}">
 						<tr id="employees-list-${employees.id}" onmouseover="">
 							<td id="id-${employees.id}"><p>${employees.id}</p></td>
 							<td id="position-${employees.position}"><p>${employees.position}</p></td>
@@ -86,10 +87,14 @@
 							<td id="email-${employees.email}"><p>${employees.email}</p></td>
 							<td id="td-btn">
 								<div id="UD">
-									<button id="btn--update-${employees.id}" class="btn--update"
-										onclick="employees.update(${employees.id});">수정</button>
-									<button id="btn--delete-${employees.id}" class="btn--delete"
-										onclick="employees.delete(${employees.id});">삭제</button>
+									<div id="btn--update-${employees.id}">
+										<button id="btn--update"
+											onclick="employees.update(${employees.id});">수정</button>
+									</div>
+									<div id="btn--delete-${employees.id}">
+										<button id="btn--delete"
+											onclick="employees.delete(${employees.id});">삭제</button>
+									</div>
 								</div>
 							</td>
 						</tr>

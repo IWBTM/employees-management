@@ -38,4 +38,9 @@ public class EmployeesApiController {
 	private ResponseDto<?> findById(@PathVariable String id) {
 		return new ResponseDto<>(true, service.findById(id));
 	}
+
+	@PostMapping("/update/{originId}")
+	private ResponseDto<?> update(@PathVariable String originId, @RequestBody Employees employees) {
+		return new ResponseDto<>(service.update(originId, employees), "수정되었습니다.");
+	}
 }

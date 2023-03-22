@@ -119,26 +119,35 @@ select {
 #UD {
 	display: flex;
 	width: auto;
+	justify-content: space-between;
+}
+
+#UD div {
+	display: flex;
+	justify-content: space-between;
+	width: auto;
 }
 
 #UD button {
 	display: flex;
 	border: none;
-	width: 30%;
-	height: 25px; align-items : center; background-color : white;
+	width: 100%;
+	height: 25px;
 	font-size: 14px;
 	background-color: white;
 	align-items: center;
 }
 
-.btn--update {
-	margin-left: 10%;
-	margin-right: 10%;
+#btn--update {
 	color: orange;
+	padding: 0px;
+	width: 100%;
 }
 
-.btn--delete {
+#btn--delete {
 	color: red;
+	padding: 0px;
+	width: 100%;
 }
 
 #td-btn {

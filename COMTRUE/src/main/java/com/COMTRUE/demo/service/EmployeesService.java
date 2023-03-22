@@ -21,6 +21,7 @@ public class EmployeesService {
 		return true;
 	}
 
+	@Transactional
 	public Employees findById(String id) {
 		String newId = "";
 		if (id.length() == 1) {
@@ -47,8 +48,21 @@ public class EmployeesService {
 
 	@Transactional
 	public boolean delete(String id) {
-		Employees employeesEntity = findById(id);
+		Employees employeesEntity = this.findById(id);
 		repository.deleteById(employeesEntity.getId());
+		return true;
+	}
+
+	@Transactional
+	public boolean update(String originId, Employees employees) {
+		System.out.println(originId);
+		System.out.println(employees);
+		Employees employeesEntity = this.findById(originId);
+		employeesEntity.setId(employees.getId());
+		employeesEntity.setPosition(employees.getPosition());
+		employeesEntity.setEmail(employees.getEmail());
+		employeesEntity.setName(employees.getName());
+		employeesEntity.setPhoneNumber(employees.getPhoneNumber());
 		return true;
 	}
 }
