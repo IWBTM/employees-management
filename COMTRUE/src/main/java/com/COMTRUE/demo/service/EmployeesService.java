@@ -12,13 +12,25 @@ import com.COMTRUE.demo.repository.EmployeesRepository;
 @Service
 public class EmployeesService {
 
+	private boolean flag;
+
 	@Autowired
 	private EmployeesRepository repository;
 
 	@Transactional
 	public boolean add(Employees employees) {
-		repository.save(employees);
-		return true;
+		flag = true;
+		List<Employees> employeesEntityList = repository.findAll();
+		employeesEntityList.forEach(employeesEntity -> {
+			if (employeesEntity.getId().equals(employees.getId())) {
+				System.out.println(employeesEntity.getId() + "번 -> " + employees.getId());
+				flag = false;
+			}
+		});
+		if (flag) {
+			repository.save(employees);
+		}
+		return flag;
 	}
 
 	@Transactional
@@ -31,6 +43,7 @@ public class EmployeesService {
 		} else {
 			newId = id;
 		}
+		System.out.println(newId);
 		return repository.findById(newId).orElseThrow(() -> {
 			return new IllegalArgumentException("찾으시는 직원이 존재하지 않습니다.");
 		});

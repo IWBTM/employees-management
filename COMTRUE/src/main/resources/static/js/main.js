@@ -11,6 +11,7 @@ let employees = {
 	},
 
 	modalAdd: function() {
+		console.log('this.idCheck($("#modal--id").val()) -> ' + this.idCheck($("#modal--id").val()));
 		let data = {
 			id: $("#modal--id").val(),
 			name: $("#modal--name").val(),
@@ -18,39 +19,37 @@ let employees = {
 			position: $("#modal--position").val(),
 			email: $("#modal--email").val(),
 		}
-		if (data.id.length < 3) {
-			alert('직원 번호는 반드시 3자리 이상으로 입력해주세요. ex) 001, 002');
-		} else {
-			$.ajax({
-				type: 'post',
-				url: '/api/employees/add',
-				data: JSON.stringify(data),
-				contentType: "application/json; charset=UTF-8",
-				dataType: "json"
-			}).done(function(data) {
-				if (data.httpStatus) {
-					alert(data.body);
-					location.reload();
-				} else {
-					alert(data.body);
-				}
-			}).fail(function(error) {
-				alert("예기치 못 한 오류가 발생하였습니다. 관리자에게 문의해주세요.");
-			});
-		}
+		$.ajax({
+			type: 'post',
+			url: '/api/employees/add',
+			data: JSON.stringify(data),
+			contentType: "application/json; charset=UTF-8",
+			dataType: "json"
+		}).done(function(data) {
+			if (data.httpStatus) {
+				alert(data.body);
+				location.reload();
+			} else {
+				alert("이미 존재하는 직원 번호입니다.");
+			}
+		}).fail(function(error) {
+			alert("예기치 못 한 오류가 발생하였습니다. 관리자에게 문의해주세요.");
+		});
 	},
 
 	update: function(id) {
+		console.log(id);
 		let newId = this.idCheck(id);
+		console.log(newId);
 		$.ajax({
 			type: 'get',
 			url: `/api/employees/findById/${newId}`
 		}).done(function(data) {
 			let UId = document.getElementById(`id-${data.body.id}`);
-			let UPosition = document.getElementById(`position-${data.body.position}`);
-			let UName = document.getElementById(`name-${data.body.name}`);
-			let UPhoneNumber = document.getElementById(`phoneNumber-${data.body.phoneNumber}`);
-			let UEmail = document.getElementById(`email-${data.body.email}`);
+			let UPosition = document.getElementById(`position-${data.body.id}`);
+			let UName = document.getElementById(`name-${data.body.id}`);
+			let UPhoneNumber = document.getElementById(`phoneNumber-${data.body.id}`);
+			let UEmail = document.getElementById(`email-${data.body.id}`);
 
 			let UBtn = document.getElementById(`btn--update-${data.body.id}`);
 			let DBtn = document.getElementById(`btn--delete-${data.body.id}`);
@@ -94,12 +93,14 @@ let employees = {
 				alert(data.body);
 				location.reload();
 			}).fail(function(err) {
-				alert('예기치 못 한 오류가 발생하였습니다.');
+				console.log(err);
+				alert(err.responseText);
 			});
 		}
 	},
 
 	delete: function(id) {
+		alert(id);
 		let newId = this.idCheck(id);
 		if (confirm(`직원 번호 ${newId}번을 정말 삭제하시겠습니까?`)) {
 			$.ajax({
@@ -117,10 +118,16 @@ let employees = {
 	},
 
 	idCheck: function(id) {
-		let newId;
-		if (id < 10) {
+		let newId = "";
+		newId = id;
+		console.log('1 -> ' + id);
+		console.log('id.length -> ' + newId.length);
+		if (id.length < 2) {
 			newId = "00" + id;
+		} else if (id.length < 3) {
+			newId = "0" + id;
 		}
+		console.log('2 -> ' + newId);
 		return newId;
 	}
 }

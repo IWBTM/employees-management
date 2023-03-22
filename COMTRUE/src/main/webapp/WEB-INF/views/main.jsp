@@ -47,6 +47,7 @@
 	<div id="header">
 		<img alt="귀사 로고" src="images/logo.png">
 	</div>
+	<br>
 
 	<div id="employees-list">
 		<div class="container">
@@ -79,12 +80,12 @@
 				<tbody>
 					<c:forEach var="employees" items="${employeesList}">
 						<input id="hidden-id" type="hidden" value="${employees.id}">
-						<tr id="employees-list-${employees.id}" onmouseover="">
+						<tr id="employees-list-${employees.id}">
 							<td id="id-${employees.id}"><p>${employees.id}</p></td>
-							<td id="position-${employees.position}"><p>${employees.position}</p></td>
-							<td id="name-${employees.name}"><p>${employees.name}</p></td>
-							<td id="phoneNumber-${employees.phoneNumber}"><p>${employees.phoneNumber}</p></td>
-							<td id="email-${employees.email}"><p>${employees.email}</p></td>
+							<td id="position-${employees.id}"><p>${employees.position}</p></td>
+							<td id="name-${employees.id}"><p>${employees.name}</p></td>
+							<td id="phoneNumber-${employees.id}"><p>${employees.phoneNumber}</p></td>
+							<td id="email-${employees.id}"><p>${employees.email}</p></td>
 							<td id="td-btn">
 								<div id="UD">
 									<div id="btn--update-${employees.id}">
