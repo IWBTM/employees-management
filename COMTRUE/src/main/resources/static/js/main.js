@@ -45,6 +45,23 @@ let employees = {
 	},
 
 	delete: function(id) {
-		alert(id + '정말 삭제하시겠습니까?');
+		let newId;
+		if(id < 10) {
+			newId = "00" + id;
+		}
+		if (confirm(`직원 번호 ${newId}번을 정말 삭제하시겠습니까?`)) {
+			$.ajax({
+				type: 'delete',
+				url: `/api/employees/delete/${newId}`,
+			}).done(function(data) {
+				alert(data.body);
+				let employees = document.getElementById(`employees-list-${newId}`);
+				employees.remove();
+			}).fail(function(err) {
+				alert('삭제에 실패 하였습니다.');
+			});
+		} else {
+			alert('취소되었습니다.');
+		}
 	}
 }

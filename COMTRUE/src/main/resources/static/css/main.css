@@ -16,10 +16,6 @@ body {
 	margin-top: 50px;
 }
 
-#employees-list {
-	margin-top: 100px;
-}
-
 #btn--row {
 	display: flex;
 	justify-content: space-between;
@@ -106,8 +102,9 @@ body {
 	color: green;
 }
 
-#employees-list {
+tbody tr {
 	text-align: center;
+	margin-top: 100px;
 }
 
 select {
