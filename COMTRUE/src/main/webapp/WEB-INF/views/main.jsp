@@ -65,8 +65,7 @@
 					<button class="btn" id="btn--search" type="submit">검색</button>
 				</form>
 			</div>
-			<div>
-			</div>
+			<div></div>
 			<table class="table" id="answer-list-table">
 				<thead>
 					<tr style="text-align: center;">
@@ -80,11 +79,16 @@
 				<tbody>
 					<c:forEach var="employees" items="${employeesList}">
 						<tr id="employees-list" onmouseover="">
-							<td><p>${employees.id }</p></td>
+							<td><p>${employees.id}</p></td>
 							<td><p>${employees.position}</p></td>
 							<td><p>${employees.name}</p></td>
 							<td><p>${employees.phoneNumber}</p></td>
 							<td><p>${employees.email}</p></td>
+							<td id="td-btn"><div id="UD">
+									<button id="btn--update"
+										onclick="employees.update(${employees.id});">수정</button>
+									<button id="btn--delete" onclick="employees.delete(${employees.id});">삭제</button>
+								</div></td>
 						</tr>
 					</c:forEach>
 				</tbody>

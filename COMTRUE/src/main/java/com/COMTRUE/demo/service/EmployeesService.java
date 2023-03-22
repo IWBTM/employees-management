@@ -28,11 +28,6 @@ public class EmployeesService {
 
 	@Transactional
 	public List<Employees> findByCategorySearch(String whatSearch, String q) {
-				repository.findByCategorySearch(whatSearch, q).forEach(t -> {
-					System.out.println(t);
-				});;
-				System.out.println("!");
-				return null; 
-//		return repository.findByCategorySearch(whatSearch, q);
+		return repository.findByCategorySearch(whatSearch, q);
 	}
 }

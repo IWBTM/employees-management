@@ -115,3 +115,32 @@ select {
 	margin-top: 10px;
 }
 
+#UD {
+	display: flex;
+	width: auto;
+}
+
+#UD button {
+	display: flex;
+	border: none;
+	width: 31%;
+	align-items: center;
+	border-radius: 10%;
+	background-color: white;
+}
+
+#btn--update {
+	margin-left: 10%;
+	margin-right: 10%;
+	color: orange;
+}
+
+#btn--delete {
+	color: red;
+}
+
+#td-btn {
+	padding-left: 0px;
+	padding-right: 0px;
+	width: auto;
+}

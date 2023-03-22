@@ -17,8 +17,6 @@ public class EmployeesController {
 	@GetMapping("/index")
 	private String index(@RequestParam(required = false) String whatSearch, @RequestParam(required = false) String q,
 			Model model) {
-		System.out.println(whatSearch);
-		System.out.println(q);
 		if (q == null || q.equals("")) {
 			model.addAttribute("employeesList", service.findAll());
 		} else {

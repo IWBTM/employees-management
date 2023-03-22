@@ -10,7 +10,7 @@ import com.COMTRUE.demo.entity.Employees;
 public interface EmployeesRepository extends JpaRepository<Employees, String> {
 
 	@Query(value = " SELECT * FROM employees "
-								+ " WHERE ?1 LIKE %?2% ",
+								+ " WHERE ?1 LIKE '%?2%' ",
 								nativeQuery = true) 
 	List<Employees> findByCategorySearch(String whatSearch, String q);
 

@@ -39,7 +39,12 @@ let employees = {
 			});
 		}
 	},
-	mouseOver: function(id) {
 
+	update: function(id) {
+		alert(id + '바로 수정하실 수 있습니다.');
+	},
+
+	delete: function(id) {
+		alert(id + '정말 삭제하시겠습니까?');
 	}
 }
