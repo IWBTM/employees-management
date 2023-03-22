@@ -79,16 +79,19 @@
 				<tbody>
 					<c:forEach var="employees" items="${employeesList}">
 						<tr id="employees-list-${employees.id}" onmouseover="">
-							<td><p>${employees.id}</p></td>
-							<td><p>${employees.position}</p></td>
-							<td><p>${employees.name}</p></td>
-							<td><p>${employees.phoneNumber}</p></td>
-							<td><p>${employees.email}</p></td>
-							<td id="td-btn"><div id="UD">
-									<button id="btn--update"
+							<td id="id-${employees.id}"><p>${employees.id}</p></td>
+							<td id="position-${employees.position}"><p>${employees.position}</p></td>
+							<td id="name-${employees.name}"><p>${employees.name}</p></td>
+							<td id="phoneNumber-${employees.phoneNumber}"><p>${employees.phoneNumber}</p></td>
+							<td id="email-${employees.email}"><p>${employees.email}</p></td>
+							<td id="td-btn">
+								<div id="UD">
+									<button id="btn--update-${employees.id}" class="btn--update"
 										onclick="employees.update(${employees.id});">수정</button>
-									<button id="btn--delete" onclick="employees.delete(${employees.id});">삭제</button>
-								</div></td>
+									<button id="btn--delete-${employees.id}" class="btn--delete"
+										onclick="employees.delete(${employees.id});">삭제</button>
+								</div>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>

@@ -41,27 +41,64 @@ let employees = {
 	},
 
 	update: function(id) {
-		alert(id + '바로 수정하실 수 있습니다.');
+		let newId = this.idCheck(id);
+		$.ajax({
+			type: 'get',
+			url: `/api/employees/findById/${newId}`
+		}).done(function(data) {
+			let UId = document.getElementById(`id-${data.body.id}`);
+			let UPosition = document.getElementById(`position-${data.body.position}`);
+			let UName = document.getElementById(`name-${data.body.name}`);
+			let UPhoneNumber = document.getElementById(`phoneNumber-${data.body.phoneNumber}`);
+			let UEmail = document.getElementById(`email-${data.body.email}`);
+
+			let UBtn = document.getElementById(`btn--update-${data.body.id}`);
+			let DBtn = document.getElementById(`btn--delete-${data.body.id}`);
+
+			UId.innerHTML = `<input type="text" id="U--id" placeholder="${data.body.id}" value="${data.body.id}">`;
+			UPosition.innerHTML = `<input type="text" id="U--position" placeholder="${data.body.position}" value="${data.body.position}">`;
+			UName.innerHTML = `<input type="text" id="U--name" placeholder="${data.body.name}" value="${data.body.name}">`;
+			UPhoneNumber.innerHTML = `<input type="text" id="U--phoneNumber" placeholder="${data.body.phoneNumber}" value="${data.body.phoneNumber}">`;
+			UEmail.innerHTML = `<input type="text" id="U--email" placeholder="${data.body.email}" value="${data.body.email}">`;
+
+			UBtn.innerHTML = `<button id="btn--cancel-${employees.id}" class="btn--update" onclick="employees.cancelUpdate(${employees.id});">취소</button>`;
+			DBtn.innerHTML = `<button id="btn--ok-${employees.id}" class="btn--delete" onclick="employees.okUpdate(${employees.id});">완료</button>`;
+		}).fail(function(data) {
+			alert('예기치 못 한 오류가 발생했습니다. 관리자에게 문의해주세요.');
+		});
+	},
+
+	cancelUpdate: function(id) {
+		location.reload();
+		alert('취소 됩니다.');
+	},
+
+	okUpdate: function() {
+
 	},
 
 	delete: function(id) {
-		let newId;
-		if(id < 10) {
-			newId = "00" + id;
-		}
+		let newId = this.idCheck(id);
 		if (confirm(`직원 번호 ${newId}번을 정말 삭제하시겠습니까?`)) {
 			$.ajax({
 				type: 'delete',
 				url: `/api/employees/delete/${newId}`,
 			}).done(function(data) {
 				alert(data.body);
-				let employees = document.getElementById(`employees-list-${newId}`);
-				employees.remove();
+				document.getElementById(`employees-list-${newId}`).remove();
 			}).fail(function(err) {
 				alert('삭제에 실패 하였습니다.');
 			});
 		} else {
 			alert('취소되었습니다.');
 		}
+	},
+
+	idCheck: function(id) {
+		let newId;
+		if (id < 10) {
+			newId = "00" + id;
+		}
+		return newId;
 	}
 }
