@@ -13,7 +13,7 @@
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-<!-- ajax통신 -->
+<!-- ajax통신 라이브러리 -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
@@ -25,20 +25,43 @@
 	<div id="modal--add--employees">
 		<div id="modal--add--employees--body">
 			<h2>직원 추가</h2>
-			<input type="text" id="modal--id" placeholder="직원번호" value="001">
-			<input type="text" id="modal--name" placeholder="이름" value="경민">
-			<input type="text" id="modal--phoneNumber" placeholder="전화번호"
-				value="000-6709-7992"> <input type="text"
-				id="modal--position" placeholder="직급" value="사원"> <input
-				type="text" id="modal--email" placeholder="이메일"
-				value="abc@naver.com">
+			<div>
+				<input type="text" id="modal--id" placeholder="직원번호" value="001">
+				<c:choose>
+					<c:when test="false">
+						<div id="add-o">O</div>
+					</c:when>
+					<c:when test="true">
+						<div id="add-x">X</div>
+					</c:when>
+				</c:choose>
+			</div>
+			<div>
+				<input type="text" id="modal--name" placeholder="이름" value="경민">
+				<div id="add-o">O</div>
+				<div id="add-x">X</div>
+			</div>
+			<div>
+				<input type="text" id="modal--phoneNumber" placeholder="전화번호" value="000-6709-7992"> 
+				<div id="add-o">O</div>
+				<div id="add-x">X</div>
+			</div>
+			<div>
+				<input type="text" id="modal--position" placeholder="직급" value="사원"> 
+				<div id="add-o">O</div>
+				<div id="add-x">X</div>
+			</div>
+			<div>
+				<input type="text" id="modal--email" placeholder="이메일" value="abc@naver.com">
+				<div id="add-o">O</div>
+				<div id="add-x">X</div>
+			</div>
 			<div id="btn--modal">
 				<div>
 					<button id="btn--modal--cancel" onclick="employees.modalCancel()">취소</button>
 				</div>
 				<div>
-					<button id="btn--modal--add" onclick="employees.modalAdd()">
-						추가</button>
+					<button id="btn--modal--add" onclick="employees.modalAdd()">추가</button>
 				</div>
 			</div>
 		</div>
@@ -63,9 +86,10 @@
 						<option value="email">이메일</option>
 					</select> <input type="text" id="input--search" placeholder="검색어를 입력하세요."
 						name="q" value="${q}" id="board--search--input">
-					<button class="btn" id="btn--search" type="submit">검색</button>
+					<button class="btn" id="btn--search" type="submit" >검색</button>
 				</form>
-			</div>
+			</div> 
+				<a href="/excel" id="btn--xlsx">직원 리스트 .xlsx형식으로 다운 받기</a>
 			<div></div>
 			<table class="table" id="answer-list-table">
 				<thead>
@@ -78,7 +102,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="employees" items="${employeesList}">
+					<c:forEach var="employees" items="${employeesList.content}">
 						<input id="hidden-id" type="hidden" value="${employees.id}">
 						<tr id="employees-list-${employees.id}">
 							<td id="id-${employees.id}"><p>${employees.id}</p></td>

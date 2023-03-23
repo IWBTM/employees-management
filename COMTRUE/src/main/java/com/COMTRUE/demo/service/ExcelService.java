@@ -62,7 +62,7 @@ public class ExcelService {
 		});
 
 		res.setContentType("ms-vnd/excel");
-		res.setHeader("Content-Disposition", "attachment; filename=student.xlsx");
+		res.setHeader("Content-Disposition", "attachment; filename=employees-list.xlsx");
 
 		try {
 			wb.write(res.getOutputStream());

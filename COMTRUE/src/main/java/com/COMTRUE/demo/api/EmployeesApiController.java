@@ -22,7 +22,6 @@ public class EmployeesApiController {
 
 	@PostMapping("/add")
 	private ResponseDto<?> add(@RequestBody Employees employees) {
-		System.out.println(employees);
 		if (employees.getId().length() < 2) {
 			return new ResponseDto<>(false, "회원 번호는 3자리 이상이어야 합니다.");
 		}

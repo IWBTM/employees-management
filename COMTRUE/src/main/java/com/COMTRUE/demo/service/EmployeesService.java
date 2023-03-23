@@ -2,7 +2,10 @@ package com.COMTRUE.demo.service;
 
 import java.util.List;
 
+import org.apache.poi.ss.usermodel.Cell;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +26,6 @@ public class EmployeesService {
 		List<Employees> employeesEntityList = repository.findAll();
 		employeesEntityList.forEach(employeesEntity -> {
 			if (employeesEntity.getId().equals(employees.getId())) {
-				System.out.println(employeesEntity.getId() + "번 -> " + employees.getId());
 				flag = false;
 			}
 		});
@@ -43,20 +45,19 @@ public class EmployeesService {
 		} else {
 			newId = id;
 		}
-		System.out.println(newId);
 		return repository.findById(newId).orElseThrow(() -> {
 			return new IllegalArgumentException("찾으시는 직원이 존재하지 않습니다.");
 		});
 	}
 
 	@Transactional
-	public List<Employees> findAll() {
-		return repository.findAll();
+	public Page<Employees> findAll(Pageable pageable) {
+		return repository.findAll(pageable);
 	}
 
 	@Transactional
-	public List<Employees> findByCategorySearch(String whatSearch, String q) {
-		return repository.findByCategorySearch(whatSearch, q);
+	public Page<Employees> findByCategorySearch(String whatSearch, String q, Pageable pageable) {
+		return repository.findByCategorySearch(whatSearch, q, pageable);
 	}
 
 	@Transactional
@@ -77,5 +78,10 @@ public class EmployeesService {
 		employeesEntity.setName(employees.getName());
 		employeesEntity.setPhoneNumber(employees.getPhoneNumber());
 		return true;
+	}
+
+	@Transactional
+	public List<Employees> findAll() {
+		return repository.findAll();
 	}
 }
