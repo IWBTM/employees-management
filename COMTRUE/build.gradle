@@ -34,6 +34,9 @@ dependencies {
 
 	// XLSX API
 	implementation 'org.apache.poi:poi-ooxml:5.2.2'
+	
+	// javax.mail API
+	implementation group: 'javax.mail', name: 'mail', version: '1.4.7'
 }
 
 tasks.named('test') {

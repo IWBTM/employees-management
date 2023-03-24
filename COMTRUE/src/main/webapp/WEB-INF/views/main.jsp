@@ -38,23 +38,15 @@
 			</div>
 			<div>
 				<input type="text" id="modal--name" placeholder="이름" value="경민">
-				<div id="add-o">O</div>
-				<div id="add-x">X</div>
 			</div>
 			<div>
 				<input type="text" id="modal--phoneNumber" placeholder="전화번호" value="000-6709-7992"> 
-				<div id="add-o">O</div>
-				<div id="add-x">X</div>
 			</div>
 			<div>
 				<input type="text" id="modal--position" placeholder="직급" value="사원"> 
-				<div id="add-o">O</div>
-				<div id="add-x">X</div>
 			</div>
 			<div>
 				<input type="text" id="modal--email" placeholder="이메일" value="abc@naver.com">
-				<div id="add-o">O</div>
-				<div id="add-x">X</div>
 			</div>
 			<div id="btn--modal">
 				<div>
