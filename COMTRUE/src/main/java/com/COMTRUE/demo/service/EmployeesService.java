@@ -51,13 +51,13 @@ public class EmployeesService {
 	}
 
 	@Transactional
-	public Page<Employees> findAll(Pageable pageable) {
-		return repository.findAll(pageable);
+	public List<Employees> findAll() {
+		return repository.findAll();
 	}
 
 	@Transactional
-	public Page<Employees> findByCategorySearch(String whatSearch, String q, Pageable pageable) {
-		return repository.findByCategorySearch(whatSearch, q, pageable);
+	public List<Employees> findByCategorySearch(String whatSearch, String q) {
+		return repository.findByCategorySearch(whatSearch, q);
 	}
 
 	@Transactional
@@ -79,9 +79,5 @@ public class EmployeesService {
 		employeesEntity.setPhoneNumber(employees.getPhoneNumber());
 		return true;
 	}
-
-	@Transactional
-	public List<Employees> findAll() {
-		return repository.findAll();
-	}
+ 
 }

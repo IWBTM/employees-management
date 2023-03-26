@@ -7,6 +7,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.COMTRUE.demo.service.EmployeesService;
@@ -18,15 +19,21 @@ public class EmployeesController {
 	private EmployeesService service;
 
 	@GetMapping({ "/main", "" })
-	private String main(@PageableDefault(size = 10, sort = "name", direction = Direction.ASC) Pageable pageable,
-			@RequestParam(required = false) String whatSearch, @RequestParam(required = false) String q, Model model) {
+	private String main(@RequestParam(required = false) String whatSearch, @RequestParam(required = false) String q,
+			Model model) {
 		String myQ = q == null ? "" : q;
 		if (myQ == "") {
-			model.addAttribute("employeesList", service.findAll(pageable));
+			model.addAttribute("employeesList", service.findAll());
 		} else {
-			model.addAttribute("employeesList", service.findByCategorySearch(whatSearch, myQ, pageable));
+			model.addAttribute("employeesList", service.findByCategorySearch(whatSearch, myQ));
 		}
 		model.addAttribute("q", myQ);
 		return "main";
+	}
+	
+	@GetMapping("/detail/{id}")
+	private String detail(@PathVariable String id, Model model) {
+		model.addAttribute("entity", service.findById(id));
+		return "detail";
 	}
 }

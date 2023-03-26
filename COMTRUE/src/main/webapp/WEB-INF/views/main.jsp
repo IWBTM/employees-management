@@ -94,14 +94,14 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="employees" items="${employeesList.content}">
+					<c:forEach var="employees" items="${employeesList}">
 						<input id="hidden-id" type="hidden" value="${employees.id}">
 						<tr id="employees-list-${employees.id}">
-							<td id="id-${employees.id}"><p>${employees.id}</p></td>
-							<td id="position-${employees.id}"><p>${employees.position}</p></td>
-							<td id="name-${employees.id}"><p>${employees.name}</p></td>
-							<td id="phoneNumber-${employees.id}"><p>${employees.phoneNumber}</p></td>
-							<td id="email-${employees.id}"><p>${employees.email}</p></td>
+							<td id="id-${employees.id}"><a href="/detail/${employees.id}">${employees.id}</a></td>
+							<td id="position-${employees.id}"><a href="/detail/${employees.id}">${employees.position}</a></td>
+							<td id="name-${employees.id}"><a href="/detail/${employees.id}">${employees.name}</a></td>
+							<td id="phoneNumber-${employees.id}"><a href="/detail/${employees.id}">${employees.phoneNumber}</a></td>
+							<td id="email-${employees.id}"><a href="/detail/${employees.id}">${employees.email}</a></td>
 							<td id="td-btn">
 								<div id="UD">
 									<div id="btn--update-${employees.id}">

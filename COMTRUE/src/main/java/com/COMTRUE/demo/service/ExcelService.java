@@ -35,7 +35,7 @@ public class ExcelService {
 		// header
 		row = sheet.createRow(rowNum++);
 		cell = row.createCell(cellNum++);
-		cell.setCellValue("직원 번호");
+		cell.setCellValue("직원 번호"); 
 		cell = row.createCell(cellNum++);
 		cell.setCellValue("이름");
 		cell = row.createCell(cellNum++);

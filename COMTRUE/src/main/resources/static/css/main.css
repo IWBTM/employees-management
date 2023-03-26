@@ -206,3 +206,7 @@ select {
 	font-weight: bold;
 	margin: 5px;
 }
+
+td a {
+	color: black;
+}
